@@ -1,6 +1,4 @@
 #define _FILE_OFFSET_BITS 64
-
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <time.h>
@@ -9,9 +7,7 @@
 #include <sys/sysmacros.h>
 #include <errno.h>
 
-
-
-const char* device_type(const mode_t mode) {
+const char* file_type(const mode_t mode) {
     switch (mode & S_IFMT) {
         case S_IFBLK:   return "block device";
         case S_IFCHR:   return "character device";
@@ -23,7 +19,6 @@ const char* device_type(const mode_t mode) {
     }
     return "unknown";
 }
-
 
 int main(int argc, char* argv[]) {
     if(argc != 2) {
@@ -38,7 +33,7 @@ int main(int argc, char* argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    printf("File type:              %s\n", device_type(sb.st_mode));
+    printf("File type:              %s\n", file_type(sb.st_mode));
     printf("INode:                  %ld\n", (long)sb.st_ino);
     printf("Access mode:            %lo (octal)\n", (unsigned long)sb.st_mode);
     printf("number of links:        %ld\n", (long)sb.st_nlink);
