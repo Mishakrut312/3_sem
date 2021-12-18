@@ -144,7 +144,6 @@ int copy_reg(char const *argv[], int bufsize) {
 
 int copy_symlink(char const *argv[], int bufsiz) {
 
-    /* Add 1 to the link size, so that we can determine whether the buffer returned by readlink() was truncated. */
     bufsiz += 1;
 
     char * buf = malloc(bufsiz);
@@ -158,12 +157,6 @@ int copy_symlink(char const *argv[], int bufsiz) {
         perror("readlink failed");
         return -2;
     }
-
-    //printf("'%s' points to '%.*s'\n", argv[1], (int) nbytes, buf);
-
-    /* If the return value was equal to the buffer size, then the link target was larger than expected 
-    (perhaps because the target was changed between the call to lstat() and the call to readlink()). 
-    Warn the user that the returned target may have been truncated. */
 
     if (nbytes == bufsiz)
        printf("(Returned buffer may have been truncated)\n");

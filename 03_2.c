@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 
-#define BUF_SIZE (1024*1024)   //  1 протестировать
+#define BUF_SIZE (1024*1024)
 
 int main(int argc, char const *argv[]) {
     int result = 0;

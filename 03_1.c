@@ -39,14 +39,14 @@ int main(int argc, char const *argv[]) {
         return 5;
     }
 
-    char buf[sb.st_size];//файл может не влезть, копировать в цикле блоками (чтение + цикл записи writeall)
+    char buf[sb.st_size];
 
     if (read(fd1, &buf, sb.st_size) == -1) {
         perror("Failed to read src file");
         return 6;
     }
 
-    if (dprintf(fd2, "%s", buf) != sb.st_size) {/////////////
+    if (dprintf(fd2, "%s", buf) != sb.st_size) {
         perror ("dprintf failed");
         result = 7;
     }

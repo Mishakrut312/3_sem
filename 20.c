@@ -12,8 +12,7 @@
 int main(void) {
 
     void * buf = mmap(NULL, (size_t)sysconf(_SC_PAGE_SIZE), PROT_READ | PROT_WRITE, MAP_PRIVATE| MAP_ANONYMOUS, -1, 0);
-    //кусок памяти, который просим, не ассоциирован ни с каким файлом (fd = -1);
-    //MAP_PRIVATE или MAP_SHARED
+    //MAP_PRIVATE or MAP_SHARED
     if(buf == MAP_FAILED) {
         perror("mmap");
         return 1;
